@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: "CustomFont"; /* Název fontu */
+	src: url("../public/font.otf") format("opentype"); /* Cesta k fontu */
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	@apply font-custom; /* Použijeme Tailwind příkaz pro globální aplikaci */
+}

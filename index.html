@@ -6,27 +6,19 @@
 		<link rel="stylesheet" href="/src/style.css" />
 		<title>Projekt</title>
 	</head>
-	<body class="bg-gray-100 h-screen flex justify-center items-center">
-		<div class="bg-white p-8 rounded-lg shadow-md w-96 text-center">
-			<h1 class="text-2xl font-bold mb-6">User Authentication</h1>
+	<body class="h-[500vh] bg-[#FFF9F0]">
+		<!-- Prázdný div, kam se načte navbar -->
+		<div id="navbar-container"></div>
 
-			<button
-				id="registerButton"
-				class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-600 transition duration-200"
-			>
-				Register
-			</button>
-
-			<button
-				id="loginButton"
-				class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200"
-			>
-				Login
-			</button>
-
-			<div id="message" class="mt-4 text-gray-600"></div>
+		<div class="h-screen">
+			<img
+				src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/533f1221-9e14-402c-ad9a-c730e0c7f39c/IMG_8502_2.jpg?format=2500w"
+				alt="Background"
+				class="w-full h-full object-cover"
+			/>
 		</div>
 
 		<script type="module" src="/src/main.ts"></script>
+		<script type="module" src="/src/navbar.ts"></script>
 	</body>
 </html>

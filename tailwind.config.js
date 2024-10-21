@@ -6,7 +6,11 @@ export default {
 		"./src/pages/*.html",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				custom: ["CustomFont", "sans-serif"], // Nastavíme nový vlastní font
+			},
+		},
 	},
 	plugins: [],
 };
