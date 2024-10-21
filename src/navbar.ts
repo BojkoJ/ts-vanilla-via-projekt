@@ -18,14 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 				const scrollTop =
 					window.pageYOffset || document.documentElement.scrollTop;
 
-				// Check if the user scrolled to the very top of the page
+				// Zkontrolujeme, zda uživatel scrolloval úplně nahoru
 				if (scrollTop === 0) {
-					// Rozbalíme navbar a změníme jeho pozadí na transparentní
-					navbar.classList.add("translate-y-0");
-					navbar.classList.remove("-translate-y-full");
-					navbar.classList.add("bg-transparent"); // Změníme pozadí na transparentní
-					navbar.classList.remove("bg-[#FFF9F0]"); // Odstraníme případnou bílou barvu pozadí
-					scrollUpThreshold = 0; // Resetujeme scrollUpThreshold
+					setTimeout(() => {
+						// Rozbalíme navbar a změníme jeho pozadí na transparentní
+						navbar.classList.add("translate-y-0");
+						navbar.classList.remove("-translate-y-full");
+						navbar.classList.add("bg-transparent"); // Změníme pozadí na transparentní
+						navbar.classList.remove("bg-[#FFF9F0]"); // Odstraníme případnou bílou barvu pozadí
+						scrollUpThreshold = 0; // Resetujeme scrollUpThreshold
+					}, 430);
 				} else if (scrollTop > lastScrollTop) {
 					// Scroll down - sbalení navbaru okamžitě a změníme pozadí zpět na bílou
 					navbar.classList.add("-translate-y-full");
