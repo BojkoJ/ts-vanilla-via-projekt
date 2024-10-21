@@ -94,7 +94,7 @@ const server = http.createServer(async (req, res) => {
 			passport.session()(req as any, res as any, async () => {
 				// Z requestu získáme metodu a URL
 				const { method, url } = req;
-				//---------------------  API Routa na registraci: -----------------------------------------------------------------------
+				//---------------------  API Endpoint na registraci: -----------------------------------------------------------------------
 				// Přidání registrace uživatele
 				if (url === "/api/users" && method === "POST") {
 					const body = await parseRequestBody(req);
@@ -128,6 +128,7 @@ const server = http.createServer(async (req, res) => {
 						res.writeHead(400, {
 							"Content-Type": "application/json",
 						});
+
 						return res.end(
 							JSON.stringify({ message: "User already exists" })
 						);
@@ -135,28 +136,26 @@ const server = http.createServer(async (req, res) => {
 
 					// Hashujeme heslo a uložíme nového uživatele
 					const hashedPassword = await bcrypt.hash(password, 10);
+
 					await db
 						.insert(usersTable)
 						.values({ name, email, password: hashedPassword });
 
 					res.writeHead(201, { "Content-Type": "application/json" });
+
 					return res.end(
 						JSON.stringify({ message: "New user created!" })
 					);
 				}
-				//---------------------  API Routa na přihlášení: -----------------------------------------------------------------------
+				//---------------------  API Endpoint na přihlášení: -----------------------------------------------------------------------
 				// Přidání samostatné routy pro login
 				if (url === "/api/login" && method === "POST") {
 					const body = await parseRequestBody(req);
 					req.body = body; // Předáme data do req.body
 
-					console.log("Login route accessed");
-
 					passport.authenticate(
 						"local",
 						(err: Error, user: User, info: any) => {
-							console.log("Passport authentication callback");
-
 							if (err || !user) {
 								if (!res.headersSent) {
 									res.writeHead(400, {
@@ -186,7 +185,6 @@ const server = http.createServer(async (req, res) => {
 								);
 							}
 
-							console.log("User logged in successfully");
 							if (!res.headersSent) {
 								res.writeHead(200, {
 									"Content-Type": "application/json",
@@ -198,13 +196,13 @@ const server = http.createServer(async (req, res) => {
 								);
 							}
 						}
-					)(req as any, res as any);
+					)(req, res);
 					return; // Zde musíme vrátit, aby se zabránilo odeslání dalších hlaviček
 				}
-
+				//---------------------  API Endpoint na kontrolu přihlášení: -----------------------------------------------------------------------
 				// API endpoint pro kontrolu přihlášení
 				if (url === "/api/check-login" && method === "GET") {
-					if ((req as any).session && (req as any).session.userId) {
+					if (req.session && req.session.userId) {
 						res.writeHead(200, {
 							"Content-Type": "application/json",
 						});

@@ -16,8 +16,6 @@ loginForm.addEventListener("submit", async (e) => {
 	// Validace pomocí Zod
 	const validation = loginSchema.safeParse(data);
 
-	console.log(validation.data);
-
 	if (!validation.success) {
 		// Pokud validace selže, zobraz chybové zprávy
 		const errorMessages = validation.error.errors
