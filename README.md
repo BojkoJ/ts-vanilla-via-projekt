@@ -27,7 +27,7 @@
 -   `./src/` obsahuje všechny TypeScript soubory, které se starají o logiku aplikace (např. `register.ts`, `login.ts`).
 -   `./local.db` obsahuje SQLite databázi s uživatelskými daty.
 -   `./drizzle` obashuje migrace ORM Drizzle
--   `./src/server` obsahuje serverovou backend logiku
+-   `./src/server` obsahuje soubor se serverovou backend logikou
 -   `./src/db` obsahuje soubor se schématem databáze pro ORM
 -   `./src/types` obsahuje soubory s typovou definicí pro kontrolu knihovnou Zod
 
