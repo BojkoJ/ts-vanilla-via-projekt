@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginSchema } from "./types/userSchema.ts"; // Import Zod schématu pro login
+import { loginSchema } from "./types/loginSchema.ts";
 
 const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
