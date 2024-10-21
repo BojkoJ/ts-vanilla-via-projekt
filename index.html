@@ -6,7 +6,27 @@
 		<link rel="stylesheet" href="/src/style.css" />
 		<title>Projekt</title>
 	</head>
-	<body>
+	<body class="bg-gray-100 h-screen flex justify-center items-center">
+		<div class="bg-white p-8 rounded-lg shadow-md w-96 text-center">
+			<h1 class="text-2xl font-bold mb-6">User Authentication</h1>
+
+			<button
+				id="registerButton"
+				class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-600 transition duration-200"
+			>
+				Register
+			</button>
+
+			<button
+				id="loginButton"
+				class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-200"
+			>
+				Login
+			</button>
+
+			<div id="message" class="mt-4 text-gray-600"></div>
+		</div>
+
 		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>
