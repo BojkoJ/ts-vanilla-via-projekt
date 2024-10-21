@@ -1,0 +1,6 @@
+{
+	"watch": ["src/server"],
+	"ext": "ts",
+	"ignore": ["dist"],
+	"exec": "node --experimental-strip-types src/server/server.ts"
+}
