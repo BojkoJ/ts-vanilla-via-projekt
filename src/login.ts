@@ -30,7 +30,7 @@ loginForm.addEventListener("submit", async (e) => {
 	}
 
 	try {
-		const response = await axios.post("/api/login", validation.data, {
+		await axios.post("/api/login", validation.data, {
 			headers: {
 				"Content-Type": "application/json",
 			},

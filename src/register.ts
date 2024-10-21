@@ -18,6 +18,7 @@ registerForm.addEventListener("submit", async (e) => {
 		if (response.status === 201) {
 			document.getElementById("message")!.textContent =
 				"User registered successfully!";
+			window.location.href = "/src/pages/login.html";
 		} else {
 			document.getElementById("message")!.textContent =
 				"Registration failed. Please try again.";
