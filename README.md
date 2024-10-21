@@ -18,6 +18,18 @@
 -   **typescript** - lepší JavaScript s typovou kontrolou
 -   **vite** - nástroj pro vývoj a scaffold TypeScript aplikací
 -   **pnpm** - rychlý správce balíčků pro efektivní instalace
+-   **passport.js** - autentizační middleware knihovna pro Node.js
+-   **express-session** - middleware knihovna pro správu session pomocí cookies v runtimu Node.js
+
+## Struktura projektu
+
+-   `./src/pages/` obsahuje HTML stránky (např. `register.html`, `login.html`).
+-   `./src/` obsahuje všechny TypeScript soubory, které se starají o logiku aplikace (např. `register.ts`, `login.ts`).
+-   `./local.db` obsahuje SQLite databázi s uživatelskými daty.
+-   `./drizzle` obashuje migrace ORM Drizzle
+-   `./src/server` obsahuje serverovou backend logiku
+-   `./src/db` obsahuje soubor se schématem databáze pro ORM
+-   `./src/types` obsahuje soubory s typovou definicí pro kontrolu knihovnou Zod
 
 ## Jak spustit?
 
@@ -25,6 +37,13 @@
 2. **Poznámka**: Není potřeba spouštět migrace databáze, `./local.db` již obsahuje připravená data.
 3. `pnpm dev` - Spustit projekt
 4. Projekt běží na [localhost:5173](http://localhost:5173)
+
+## Autentifikace
+
+Projekt využívá knihovnu **passport.js** a knihovnu **express-session** pro správu autentifikace uživatelů.
+
+-   Uživatelé mohou provádět registraci pomocí endpointu `/api/users` a přihlásit se přes `/api/login`.
+-   Sessiony jsou spravovány pomocí cookies, které se automaticky vyprší po 24 hodinách.
 
 ## Další informace
 
