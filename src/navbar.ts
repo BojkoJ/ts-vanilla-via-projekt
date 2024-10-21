@@ -26,21 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
 						navbar.classList.remove("-translate-y-full");
 						navbar.classList.add("bg-transparent"); // Změníme pozadí na transparentní
 						navbar.classList.remove("bg-[#FFF9F0]"); // Odstraníme případnou bílou barvu pozadí
-						scrollUpThreshold = 0; // Resetujeme scrollUpThreshold
 					}, 430);
+					scrollUpThreshold = 0; // Resetujeme scrollUpThreshold
 				} else if (scrollTop > lastScrollTop) {
 					// Scroll down - sbalení navbaru okamžitě a změníme pozadí zpět na bílou
-					navbar.classList.add("-translate-y-full");
-					navbar.classList.remove("translate-y-0");
-					navbar.classList.remove("bg-transparent");
 					setTimeout(() => {
+						navbar.classList.add("-translate-y-full");
+						navbar.classList.remove("translate-y-0");
+						navbar.classList.remove("bg-transparent");
 						navbar.classList.add("bg-[#FFF9F0]"); // Změníme pozadí zpět na bílou
-					}, 430);
+					}, 250);
 					scrollUpThreshold = 0; // Resetuje se, když uživatel scrolluje dolů
 				} else {
 					// Scroll up - čekáme, až bude scroll up větší než výška navbaru
 					scrollUpThreshold += lastScrollTop - scrollTop;
-					if (scrollUpThreshold >= navbarHeight * 2) {
+					if (scrollUpThreshold >= navbarHeight / 1.3) {
 						navbar.classList.add("translate-y-0");
 						navbar.classList.remove("-translate-y-full");
 					}
@@ -51,5 +51,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else {
 			console.error("Navbar element not found!");
 		}
-	}, 200); // Počkejte .2 sekundy na to, až se html navbaru přidá do DOM
+	}, 100); // Počkejte .1 sekundy na to, až se html navbaru přidá do DOM
 });
