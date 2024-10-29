@@ -34,9 +34,10 @@
 ## Jak spustit?
 
 1. `pnpm install` - Nainstalovat dependencies a knihovny
-2. **Poznámka**: Není potřeba spouštět migrace databáze, `./local.db` již obsahuje připravená data.
-3. `pnpm dev` - Spustit projekt
-4. Projekt běží na [localhost:5173](http://localhost:5173)
+2. `pnpm add -g node-gyp` - Nainstalovat node-gyp pro better-sqlite3
+3. **Poznámka**: Není potřeba spouštět migrace databáze, `./local.db` již obsahuje připravená data.
+4. `pnpm dev` - Spustit projekt
+5. Projekt běží na [localhost:5173](http://localhost:5173)
 
 ## Autentifikace
 
