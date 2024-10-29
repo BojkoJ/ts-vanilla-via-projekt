@@ -42,7 +42,7 @@
 
 Projekt využívá knihovnu **passport.js** a knihovnu **express-session** pro správu autentifikace uživatelů.
 
--   Uživatelé mohou provádět registraci pomocí endpointu `/api/users` a přihlásit se přes `/api/login`.
+-   Uživatelé mohou provádět registraci pomocí endpointu `/src/pages/register` a přihlásit se přes `/src/pages/login`.
 -   Sessiony jsou spravovány pomocí cookies, které se automaticky vyprší po 24 hodinách.
 
 ## Další informace
