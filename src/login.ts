@@ -41,3 +41,25 @@ loginForm.addEventListener("submit", async (e) => {
 		document.getElementById("message")!.textContent = "Error logging in!";
 	}
 });
+
+async function main() {
+	try {
+		const response = await fetch("/api/check-login");
+		const data = await response.json();
+
+		// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
+		if (data.loggedIn) {
+			const currentPath = window.location.pathname;
+			if (
+				currentPath === "/src/pages/login" ||
+				currentPath === "/src/pages/login.html"
+			) {
+				window.location.href = "/";
+			}
+		}
+	} catch (error) {
+		console.error("Error checking login status:", error);
+	}
+}
+
+main();

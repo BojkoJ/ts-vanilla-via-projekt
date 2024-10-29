@@ -51,5 +51,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else {
 			console.error("Navbar element not found!");
 		}
-	}, 100); // Počkejte .1 sekundy na to, až se html navbaru přidá do DOM
+	}, 300); // Počkejte .3 sekundy na to, až se html navbaru přidá do DOM
 });

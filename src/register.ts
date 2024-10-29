@@ -37,3 +37,25 @@ registerForm.addEventListener("submit", async (e) => {
 		console.error("Error registering user", error);
 	}
 });
+
+async function main() {
+	try {
+		const response = await fetch("/api/check-login");
+		const data = await response.json();
+
+		// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
+		if (data.loggedIn) {
+			const currentPath = window.location.pathname;
+			if (
+				currentPath === "/src/pages/register" ||
+				currentPath === "/src/pages/register.html"
+			) {
+				window.location.href = "/";
+			}
+		}
+	} catch (error) {
+		console.error("Error checking login status:", error);
+	}
+}
+
+main();
