@@ -46,8 +46,58 @@ document.addEventListener("DOMContentLoaded", () => {
 					}
 				}
 
-				lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+				lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Zabránit negative scroll
 			});
+
+			// Kód pro modal
+			const loginButton = document.querySelector(
+				"#navbar a[href='login']"
+			) as HTMLAnchorElement;
+			const modal = document.getElementById(
+				"login-modal"
+			) as HTMLDivElement;
+
+			const loginForm = document.getElementById(
+				"login-form"
+			) as HTMLDivElement;
+			const registerForm = document.getElementById(
+				"register-form"
+			) as HTMLDivElement;
+			const showRegisterLink = document.getElementById(
+				"show-register"
+			) as HTMLAnchorElement;
+			const showLoginLink = document.getElementById(
+				"show-login"
+			) as HTMLAnchorElement;
+
+			if (loginButton && modal) {
+				loginButton.addEventListener("click", (event) => {
+					event.preventDefault();
+					modal.style.display = "flex";
+					loginForm.classList.remove("hidden");
+					registerForm.classList.add("hidden");
+				});
+
+				modal.addEventListener("click", (event) => {
+					if (event.target === modal) {
+						modal.style.display = "none";
+					}
+				});
+
+				// Přepnutí na registrační formulář
+				showRegisterLink.addEventListener("click", (event) => {
+					event.preventDefault();
+					loginForm.classList.add("hidden");
+					registerForm.classList.remove("hidden");
+				});
+
+				// Přepnutí na přihlašovací formulář
+				showLoginLink.addEventListener("click", (event) => {
+					event.preventDefault();
+					registerForm.classList.add("hidden");
+					loginForm.classList.remove("hidden");
+				});
+			}
 		} else {
 			console.error("Navbar element not found!");
 		}

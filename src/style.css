@@ -27,3 +27,7 @@ nav {
 body {
 	font-family: "CustomFontBody", sans-serif; /* Použití druhého fontu */
 }
+
+.hidden {
+	display: none;
+}

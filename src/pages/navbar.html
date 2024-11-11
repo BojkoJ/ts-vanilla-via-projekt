@@ -12,9 +12,9 @@
 		class="flex justify-between items-center ml-20 mr-16 text-[16px] h-[120px]"
 	>
 		<div class="flex gap-x-8">
-			<a href="">Plants</a>
-			<a href="">Workshop</a>
-			<a href="">Lifestyle</a>
+			<a href="#">Plants</a>
+			<a href="#">Workshop</a>
+			<a href="#">Lifestyle</a>
 		</div>
 		<div class="">
 			<img
@@ -24,7 +24,8 @@
 			/>
 		</div>
 		<div class="flex justify-evenly w-[345px] h-full items-center gap-x-6">
-			<a class="cursor-pointer" href="">Login</a>
+			<a class="cursor-pointer" href="login">Login</a>
+
 			<img
 				src="/ig.png"
 				alt="Instagram Icon"
@@ -46,3 +47,114 @@
 		</div>
 	</div>
 </nav>
+
+<div
+	id="login-modal"
+	class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50"
+>
+	<div class="bg-white rounded-lg w-[480px] py-8 px-10 shadow-lg relative">
+		<!-- Login Form -->
+		<div id="login-form">
+			<h2 class="text-[1.4rem] my-4 text-center tracking-tight">
+				Welcome to Soilboy
+			</h2>
+			<form>
+				<div class="">
+					<input
+						class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+						id="email"
+						type="email"
+						placeholder="Email"
+					/>
+				</div>
+				<div class="mb-5">
+					<input
+						class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+						id="password"
+						type="password"
+						placeholder="Password"
+					/>
+				</div>
+				<button
+					class="bg-[#3e3e3e] text-white py-3 pt-3 pb-4 w-full rounded focus:outline-none text-xs"
+				>
+					Sign in
+				</button>
+			</form>
+			<p
+				class="mt-3 text-center flex w-full items-center justify-center gap-x-4 tracking-tight"
+			>
+				<a href="#" id="" class="text-gray-500 text-xs"
+					>Forgot password?</a
+				>
+				<a href="#" id="show-register" class="text-xs text-gray-500"
+					>Create account</a
+				>
+			</p>
+		</div>
+
+		<!-- Register Form -->
+		<div id="register-form" class="hidden">
+			<h2 class="text-[1.4rem] my-4 text-center tracking-tight">
+				Create Account
+			</h2>
+			<form>
+				<div class="flex">
+					<div class="w-1/2 pr-2">
+						<input
+							class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+							id="first-name"
+							type="text"
+							placeholder="First Name"
+						/>
+					</div>
+
+					<div class="w-1/2 pl-2">
+						<input
+							class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+							id="last-name"
+							type="text"
+							placeholder="Last Name"
+						/>
+					</div>
+				</div>
+				<div class="">
+					<input
+						class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+						id="register-email"
+						type="email"
+						placeholder="Email"
+					/>
+				</div>
+				<div class="">
+					<input
+						class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+						id="register-password"
+						type="password"
+						placeholder="Create Password"
+					/>
+				</div>
+				<div class="mb-5">
+					<input
+						class="appearance-none border-b rounded w-full py-4 px-3 leading-tight text-xs"
+						id="confirm-password"
+						type="password"
+						placeholder="Re-type Password"
+					/>
+				</div>
+				<button
+					class="bg-[#3e3e3e] text-white py-3 pt-3 pb-4 w-full rounded focus:outline-none text-xs"
+				>
+					Create account
+				</button>
+			</form>
+			<p
+				class="mt-3 text-center flex w-full items-center justify-center gap-x-4 tracking-tight"
+			>
+				<a href="#" id="show-login" class="text-xs text-gray-500"
+					>Already have an account? Sign in</a
+				>
+			</p>
+		</div>
+	</div>
+</div>
