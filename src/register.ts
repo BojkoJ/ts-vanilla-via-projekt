@@ -1,5 +1,6 @@
 import axios from "axios";
 import { userSchema } from "./types/userSchema.ts";
+import { loginSchema } from "./types/loginSchema.ts";
 
 setTimeout(() => {
 	const loginModalTriggerButton = document.querySelector(
@@ -44,9 +45,6 @@ function registerModalClick() {
 			"confirm-password"
 		) as HTMLInputElement;
 
-		console.log(passwordInput.value);
-		console.log(confirmPasswordInput.value);
-
 		// Základní kontrola shody hesel
 		if (passwordInput.value !== confirmPasswordInput.value) {
 			messageElement.textContent = "Passwords do not match.";
@@ -81,7 +79,37 @@ function registerModalClick() {
 
 			if (response.status === 201) {
 				messageElement.textContent = "User registered successfully!";
-				window.location.href = "/";
+
+				// Po registraci přihlásit
+				const data = {
+					email: emailInput.value,
+					password: passwordInput.value,
+				};
+
+				// Validace pomocí Zod
+				const validation = loginSchema.safeParse(data);
+
+				if (!validation.success) {
+					// Pokud validace selže, zobraz chybové zprávy
+					const errorMessages = validation.error.errors
+						.map((err) => err.message)
+						.join(", ");
+					messageElement.textContent = `Validation error: ${errorMessages}`;
+					return;
+				}
+
+				try {
+					await axios.post("/api/login", validation.data, {
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
+
+					window.location.href = "/";
+				} catch (error) {
+					console.error("Error logging in", error);
+					messageElement.textContent = "Error logging in!";
+				}
 			} else {
 				messageElement.textContent =
 					"Registration failed. Please try again.";
