@@ -1,61 +1,121 @@
 import axios from "axios";
+import { userSchema } from "./types/userSchema.ts";
 
-const registerForm = document.getElementById("registerForm") as HTMLFormElement;
+setTimeout(() => {
+	const loginModalTriggerButton = document.querySelector(
+		"#navbar a[href='login']"
+	) as HTMLAnchorElement;
 
-registerForm.addEventListener("submit", async (e) => {
-	e.preventDefault();
+	loginModalTriggerButton.addEventListener("click", loginModalClick);
+}, 200);
 
-	const formData = new FormData(registerForm);
-	const data = {
-		name: formData.get("name"),
-		email: formData.get("email"),
-		password: formData.get("password"),
-	};
+function loginModalClick() {
+	const registerModalTriggerButton = document.querySelector(
+		"a[href='register']"
+	) as HTMLAnchorElement;
 
-	try {
-		const response = await axios.post("/api/users", data);
-		// Zkontrolujeme stavový kód a obsah odpovědi
-		if (response.status === 201) {
-			document.getElementById("message")!.textContent =
-				"User registered successfully!";
-			window.location.href = "/src/pages/login.html";
-		} else {
-			document.getElementById("message")!.textContent =
-				"Registration failed. Please try again.";
-		}
-	} catch (error: any) {
-		// Ošetření konkrétních chyb, například pokud už uživatel existuje
-		if (error.response && error.response.status === 400) {
-			document.getElementById("message")!.textContent =
-				"User with this email already exists!";
-
-			console.log(error);
-		} else {
-			document.getElementById("message")!.textContent =
-				"Error registering user. Please try again.";
-		}
-		console.error("Error registering user", error);
-	}
-});
-
-async function main() {
-	try {
-		const response = await fetch("/api/check-login");
-		const data = await response.json();
-
-		// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
-		if (data.loggedIn) {
-			const currentPath = window.location.pathname;
-			if (
-				currentPath === "/src/pages/register" ||
-				currentPath === "/src/pages/register.html"
-			) {
-				window.location.href = "/";
-			}
-		}
-	} catch (error) {
-		console.error("Error checking login status:", error);
-	}
+	registerModalTriggerButton.addEventListener("click", registerModalClick);
 }
 
-main();
+function registerModalClick() {
+	const registerForm = document.getElementById(
+		"register-form"
+	) as HTMLFormElement;
+	const messageElement = document.getElementById(
+		"message-reg"
+	) as HTMLDivElement;
+
+	registerForm.addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		const firstNameInput = document.getElementById(
+			"first-name"
+		) as HTMLInputElement;
+		const lastNameInput = document.getElementById(
+			"last-name"
+		) as HTMLInputElement;
+		const emailInput = document.getElementById(
+			"register-email"
+		) as HTMLInputElement;
+		const passwordInput = document.getElementById(
+			"register-password"
+		) as HTMLInputElement;
+		const confirmPasswordInput = document.getElementById(
+			"confirm-password"
+		) as HTMLInputElement;
+
+		console.log(passwordInput.value);
+		console.log(confirmPasswordInput.value);
+
+		// Základní kontrola shody hesel
+		if (passwordInput.value !== confirmPasswordInput.value) {
+			messageElement.textContent = "Passwords do not match.";
+			return;
+		}
+
+		const data = {
+			firstName: firstNameInput.value,
+			lastName: lastNameInput.value,
+			email: emailInput.value,
+			password: passwordInput.value,
+		};
+
+		// Validace pomocí Zod
+		const validation = userSchema.safeParse(data);
+
+		if (!validation.success) {
+			// Pokud validace selže, zobraz chybové zprávy
+			const errorMessages = validation.error.errors
+				.map((err) => err.message)
+				.join(", ");
+			messageElement.textContent = `Validation error: ${errorMessages}`;
+			return;
+		}
+
+		try {
+			const response = await axios.post("/api/users", validation.data, {
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+
+			if (response.status === 201) {
+				messageElement.textContent = "User registered successfully!";
+				window.location.href = "/";
+			} else {
+				messageElement.textContent =
+					"Registration failed. Please try again.";
+			}
+		} catch (error: any) {
+			// Ošetření konkrétních chyb, například pokud už uživatel existuje
+			if (error.response && error.response.status === 400) {
+				messageElement.textContent = error.response.data.message;
+			} else {
+				messageElement.textContent = error.response.data.message;
+			}
+		}
+	});
+
+	// Funkce pro kontrolu přihlášení
+	async function main() {
+		try {
+			const response = await axios.get("/api/check-login");
+			const data = response.data;
+
+			// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
+			if (data.loggedIn) {
+				const currentPath = window.location.pathname;
+				if (
+					currentPath === "/src/pages/register" ||
+					currentPath === "/src/pages/register.html"
+				) {
+					window.location.href = "/";
+				}
+			}
+		} catch (error) {
+			console.error("Error checking login status:", error);
+		}
+	}
+
+	main();
+}

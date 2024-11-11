@@ -99,14 +99,16 @@ const server = http.createServer(async (req, res) => {
 				if (url === "/api/users" && method === "POST") {
 					const body = await parseRequestBody(req);
 
-					const { name, email, password } = body;
+					const { firstName, lastName, email, password } = body;
 
 					// Validace uživatelských dat pomocí Zod
 					const validation = userSchema.safeParse({
-						name,
+						firstName,
+						lastName,
 						email,
 						password,
 					});
+
 					if (!validation.success) {
 						res.writeHead(400, {
 							"Content-Type": "application/json",
@@ -130,16 +132,21 @@ const server = http.createServer(async (req, res) => {
 						});
 
 						return res.end(
-							JSON.stringify({ message: "User already exists" })
+							JSON.stringify({
+								message: "User with this email already exists",
+							})
 						);
 					}
 
 					// Hashujeme heslo a uložíme nového uživatele
 					const hashedPassword = await bcrypt.hash(password, 10);
 
-					await db
-						.insert(usersTable)
-						.values({ name, email, password: hashedPassword });
+					await db.insert(usersTable).values({
+						firstName,
+						lastName,
+						email,
+						password: hashedPassword,
+					});
 
 					res.writeHead(201, { "Content-Type": "application/json" });
 
@@ -161,6 +168,7 @@ const server = http.createServer(async (req, res) => {
 									res.writeHead(400, {
 										"Content-Type": "application/json",
 									});
+
 									res.end(
 										JSON.stringify({
 											message:

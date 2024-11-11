@@ -57,8 +57,6 @@ function loginModalClick() {
 
 	// Funkce pro kontrolu přihlášení
 	async function main() {
-		console.log(loginForm);
-		console.log(messageElement);
 		try {
 			const response = await axios.get("/api/check-login");
 			const data = response.data;
