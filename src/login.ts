@@ -1,65 +1,82 @@
 import axios from "axios";
 import { loginSchema } from "./types/loginSchema.ts";
 
-const loginForm = document.getElementById("loginForm") as HTMLFormElement;
+setTimeout(() => {
+	const loginModalTriggerButton = document.querySelector(
+		"#navbar a[href='login']"
+	) as HTMLAnchorElement;
 
-loginForm.addEventListener("submit", async (e) => {
-	e.preventDefault();
+	loginModalTriggerButton.addEventListener("click", loginModalClick);
+}, 200);
 
-	const formData = new FormData(loginForm);
+function loginModalClick() {
+	const loginForm = document.querySelector(
+		"#login-form form"
+	) as HTMLFormElement;
+	const messageElement = document.getElementById("message") as HTMLDivElement;
 
-	const data = {
-		email: formData.get("email") as string,
-		password: formData.get("password") as string,
-	};
+	loginForm.addEventListener("submit", async (e) => {
+		e.preventDefault();
 
-	// Validace pomocí Zod
-	const validation = loginSchema.safeParse(data);
+		const emailInput = document.getElementById("email") as HTMLInputElement;
+		const passwordInput = document.getElementById(
+			"password"
+		) as HTMLInputElement;
 
-	if (!validation.success) {
-		// Pokud validace selže, zobraz chybové zprávy
-		const errorMessages = validation.error.errors
-			.map((err) => err.message)
-			.join(", ");
-		document.getElementById(
-			"message"
-		)!.textContent = `Validation error: ${errorMessages}`;
-		return;
-	}
+		const data = {
+			email: emailInput.value,
+			password: passwordInput.value,
+		};
 
-	try {
-		await axios.post("/api/login", validation.data, {
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		// Validace pomocí Zod
+		const validation = loginSchema.safeParse(data);
 
-		document.getElementById("message")!.textContent = "Login successful!";
-		window.location.href = "/";
-	} catch (error) {
-		console.error("Error logging in", error);
-		document.getElementById("message")!.textContent = "Error logging in!";
-	}
-});
-
-async function main() {
-	try {
-		const response = await fetch("/api/check-login");
-		const data = await response.json();
-
-		// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
-		if (data.loggedIn) {
-			const currentPath = window.location.pathname;
-			if (
-				currentPath === "/src/pages/login" ||
-				currentPath === "/src/pages/login.html"
-			) {
-				window.location.href = "/";
-			}
+		if (!validation.success) {
+			// Pokud validace selže, zobraz chybové zprávy
+			const errorMessages = validation.error.errors
+				.map((err) => err.message)
+				.join(", ");
+			messageElement.textContent = `Validation error: ${errorMessages}`;
+			return;
 		}
-	} catch (error) {
-		console.error("Error checking login status:", error);
-	}
-}
 
-main();
+		try {
+			await axios.post("/api/login", validation.data, {
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+
+			messageElement.textContent = "Login successful!";
+			window.location.href = "/";
+		} catch (error) {
+			console.error("Error logging in", error);
+			messageElement.textContent = "Error logging in!";
+		}
+	});
+
+	// Funkce pro kontrolu přihlášení
+	async function main() {
+		console.log(loginForm);
+		console.log(messageElement);
+		try {
+			const response = await axios.get("/api/check-login");
+			const data = response.data;
+
+			// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
+			if (data.loggedIn) {
+				const currentPath = window.location.pathname;
+				if (
+					currentPath === "/src/pages/login" ||
+					currentPath === "/src/pages/login.html"
+				) {
+					window.location.href = "/";
+				}
+			}
+		} catch (error) {
+			console.error("Error checking login status:", error);
+		}
+	}
+
+	main();
+}
