@@ -1,3 +1,5 @@
+import axios from "axios";
+
 document.addEventListener("DOMContentLoaded", () => {
 	setTimeout(() => {
 		const navbar = document.getElementById("navbar");
@@ -53,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const loginButton = document.querySelector(
 				"#navbar a[href='login']"
 			) as HTMLAnchorElement;
+
 			const modal = document.getElementById(
 				"login-modal"
 			) as HTMLDivElement;
@@ -68,6 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			) as HTMLAnchorElement;
 			const showLoginLink = document.getElementById(
 				"show-login"
+			) as HTMLAnchorElement;
+
+			// User button - pouze pokud je uživatel přihlášen
+			const userButton = document.querySelector(
+				"#navbar a[href='user']"
 			) as HTMLAnchorElement;
 
 			if (loginButton && modal) {
@@ -98,6 +106,24 @@ document.addEventListener("DOMContentLoaded", () => {
 					loginForm.classList.remove("hidden");
 				});
 			}
+
+			// Funkce pro kontrolu přihlášení
+			async function checkLogin() {
+				try {
+					const response = await axios.get("/api/check-login");
+					const data = response.data;
+
+					// Pokud je uživatel přihlášen, schovej tlačítko pro přihlášení
+					if (data.loggedIn) {
+						loginButton.classList.add("hidden");
+						userButton.classList.remove("hidden");
+					}
+				} catch (error) {
+					console.error("Error checking login status:", error);
+				}
+			}
+
+			checkLogin();
 		} else {
 			console.error("Navbar element not found!");
 		}

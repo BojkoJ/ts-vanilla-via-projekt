@@ -123,27 +123,4 @@ function registerModalClick() {
 			}
 		}
 	});
-
-	// Funkce pro kontrolu přihlášení
-	async function main() {
-		try {
-			const response = await axios.get("/api/check-login");
-			const data = response.data;
-
-			// Pokud je uživatel přihlášen, přesměrujeme ho z chráněných rout
-			if (data.loggedIn) {
-				const currentPath = window.location.pathname;
-				if (
-					currentPath === "/src/pages/register" ||
-					currentPath === "/src/pages/register.html"
-				) {
-					window.location.href = "/";
-				}
-			}
-		} catch (error) {
-			console.error("Error checking login status:", error);
-		}
-	}
-
-	main();
 }
