@@ -23,7 +23,7 @@
 
 ## Struktura projektu
 
--   `./src/pages/` obsahuje HTML stránky (např. `register.html`, `login.html`).
+-   `./src/pages/` obsahuje HTML stránky/komponenty (např. `navbar.html`).
 -   `./src/` obsahuje všechny TypeScript soubory, které se starají o logiku aplikace (např. `register.ts`, `login.ts`).
 -   `./local.db` obsahuje SQLite databázi s uživatelskými daty.
 -   `./drizzle` obashuje migrace ORM Drizzle
