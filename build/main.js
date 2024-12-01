@@ -37,18 +37,20 @@ const navbarHTML = `
           >
         </div>
       </div>
-      <a href="#" class="text-neutral-900 hover:text-neutral-700">Workshop</a>
+      <a href="./workshops.html" class="text-neutral-900 hover:text-neutral-700 ws-link">Workshops</a>
       <a href="#" class="text-neutral-900 hover:text-neutral-700">Lifestyle</a>
     </div>
 
 
 
       <div class="">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/3eb06944-aca8-40f1-ad3a-509b04ae59bc/soilboy-logo_fa.png?format=1500w"
-          alt="Logo"
-          class="h-[41px] ml-[70px] blur-[.3px]"
-        />
+        <a href="./index.html">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/3eb06944-aca8-40f1-ad3a-509b04ae59bc/soilboy-logo_fa.png?format=1500w"
+            alt="Logo"
+            class="h-[41px] ml-[70px] blur-[.3px]"
+          />
+        </a>
       </div>
       <div
         class="flex justify-evenly w-[345px] h-full items-center gap-x-6"
