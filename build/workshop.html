@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<title>Soilboy - BOJ0043</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css"
+		/>
+	</head>
+	<body class="bg-[#FFF9F0]">
+		<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+		<script>
+			// Inicializace Glide.js po načtení DOM
+			document.addEventListener("DOMContentLoaded", () => {
+				// Globální proměnná
+				window.currentSlide = 1; // Proměnná pro sledování aktuálního slide
+
+				const glide = new Glide(".glide", {
+					type: "carousel",
+					perView: 1,
+					focusAt: "center",
+					gap: 0,
+				});
+
+				// Přidání listeneru na změnu slidu
+				glide.on("run.after", () => {
+					window.currentSlide = glide.index + 1; // Glide index začíná od 0, přidáme 1
+				});
+
+				glide.mount();
+			});
+		</script>
+
+		<div id="navbar-container"></div>
+
+		<div class="flex w-full px-16 mt-20 h-[150vh]">
+			<!-- Levý sloupec s textem -->
+			<div
+				class="h-screen w-[40%] flex-1 flex flex-col justify-center text-sm"
+			>
+				<h1 class="text-4xl mb-4 text-gray-800">
+					Glowing Moss Garden at Sol Luminaire
+				</h1>
+				<p class="text-lg text-gray-600 mb-6">SGD 69.00</p>
+				<p class="text-gray-600 mb-6">
+					Join us for an exclusive workshop at
+					<span class="font-semibold text-gray-800"
+						>Rooms by Sol Luminaire</span
+					>, where creativity meets nature and light! 🌿✨
+				</p>
+				<p class="text-gray-600 mb-6">
+					In this hands-on experience, participants will craft their
+					own
+					<span class="italic text-gray-800"
+						>glowing moss garden</span
+					>
+					on a sleek stainless steel tray. This unique arrangement
+					blends the serenity of greenery with the elegance of
+					illumination, offering a one-of-a-kind centerpiece to enjoy
+					all year round.
+				</p>
+				<p class="text-gray-600 mb-6">
+					Whether you're a nature enthusiast or a design lover, this
+					workshop is perfect for creating <br />
+					something truly special. Don't miss out! 🌟
+				</p>
+				<p class="text-gray-600 mb-4 font-semibold">
+					<span class="">Duration:</span> 60 Mins<br />
+					<span class="">Location:</span> Rooms by Sol Luminaire<br />
+					400 Balestier Rd, Singapore 329802
+				</p>
+				<div class="mt-8">
+					<label
+						for="date"
+						class="block text-gray-700 font-medium mb-2"
+						>Date:</label
+					>
+					<div class="relative w-1/2 mb-6">
+						<select
+							id="date"
+							class="block w-full px-4 py-5 text-gray-700 bg-white border border-gray-300 shadow-sm focus:outline-none focus:ring-2 appearance-none"
+						>
+							<option value="" disabled selected>
+								Select date
+							</option>
+							<option value="2024-12-01">2024-12-01</option>
+							<option value="2024-12-08">2024-12-08</option>
+						</select>
+						<div
+							class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+						>
+							<svg
+								class="w-5 h-5 text-gray-400"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M19 9l-7 7-7-7"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					<label
+						for="time"
+						class="block text-gray-700 font-medium mb-2"
+						>Time:</label
+					>
+					<div class="relative w-1/2 mb-6">
+						<select
+							id="time"
+							class="block w-full px-4 py-5 text-gray-700 bg-white border border-gray-300 shadow-sm focus:outline-none focus:ring-2 appearance-none"
+						>
+							<option value="" disabled selected>
+								Select time
+							</option>
+							<option value="10:00">10:00 AM</option>
+							<option value="14:00">02:00 PM</option>
+						</select>
+						<div
+							class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none"
+						>
+							<svg
+								class="w-5 h-5 text-gray-400"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M19 9l-7 7-7-7"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					<button
+						class="border-2 w-1/2 border-gray-950 text-[18.3px] rounded-full py-2 px-4 hover:bg-[#19341E] hover:text-gray-50 transition-all"
+					>
+						Add to Cart
+					</button>
+				</div>
+			</div>
+
+			<div class="h-[130vh] flex-1 w-[45%] ml-40 mt-14">
+				<!-- Glide.js slider -->
+				<div class="glide h-full" id="img-slide">
+					<!-- Slider hlavní obrázky -->
+					<div class="glide__track h-full" data-glide-el="track">
+						<ul class="glide__slides h-full">
+							<li class="glide__slide h-full relative">
+								<img
+									src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/e2075da4-feed-4b58-a222-ed7b133f97a3/IMG_9309_v2.jpg?format=2500w"
+									alt="Image 1"
+									id="img-slide-1"
+									class="w-full h-full object-cover cursor-pointer"
+									onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/e2075da4-feed-4b58-a222-ed7b133f97a3/IMG_9309_v2.jpg?format=2500w')"
+								/>
+							</li>
+							<li class="glide__slide h-full relative">
+								<img
+									src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/6e9e6607-006d-4ce7-9aaf-b643ebf430df/IMG_9357_2.jpg?format=2500w"
+									alt="Image 2"
+									class="w-full h-full object-cover cursor-pointer"
+									id="img-slide-2"
+									onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/6e9e6607-006d-4ce7-9aaf-b643ebf430df/IMG_9357_2.jpg?format=2500w')"
+								/>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Šipky -->
+					<div
+						class="glide__arrows absolute inset-y-0 left-0 flex items-center justify-between w-full"
+						data-glide-el="controls"
+					>
+						<button
+							class="glide__arrow glide__arrow--left bg-transparent text-gray-800 rounded-full border-0 shadow-lg p-2 ml-4"
+							data-glide-dir="<"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-6 h-6"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M15 19l-7-7 7-7"
+								/>
+							</svg>
+						</button>
+						<button
+							class="glide__arrow glide__arrow--right bg-transparent text-gray-800 border-0 rounded-full shadow-lg p-2 mr-4"
+							data-glide-dir=">"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="w-6 h-6"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 5l7 7-7 7"
+								/>
+							</svg>
+						</button>
+					</div>
+
+					<!-- Miniatury -->
+					<div
+						class="glide__bullets flex justify-center absolute mt-12 -bottom-16 -space-x-1"
+						data-glide-el="controls[nav]"
+					>
+						<button
+							class="glide__bullet w-12 h-16 overflow-hidden rounded-none border-none"
+							data-glide-dir="=0"
+						>
+							<img
+								src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/e2075da4-feed-4b58-a222-ed7b133f97a3/IMG_9309_v2.jpg?format=2500w"
+								alt="Thumbnail 1"
+								class="w-full h-full object-cover"
+							/>
+						</button>
+						<button
+							class="glide__bullet w-12 h-16 overflow-hidden rounded-none border-none"
+							data-glide-dir="=1"
+						>
+							<img
+								src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/6e9e6607-006d-4ce7-9aaf-b643ebf430df/IMG_9357_2.jpg?format=2500w"
+								alt="Thumbnail 2"
+								class="w-full h-full object-cover"
+							/>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="space-y-4 px-4 mt-10 w-1/2 pl-20">
+			<div class="border-y border-gray-300">
+				<button
+					class="w-full flex justify-between items-center py-7 text-left focus:outline-none"
+					onclick="toggleCollapse(1)"
+				>
+					<span class="font-semibold text-gray-800"
+						>Lesson outline</span
+					>
+					<svg
+						id="icon-1"
+						class="w-6 h-6 text-gray-800 transform transition-transform"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 4v16m8-8H4"
+						/>
+					</svg>
+				</button>
+				<div
+					id="content-1"
+					class="h-0 overflow-hidden transition-[height] duration-300 ease-in-out px-4 text-gray-600"
+				>
+					Introduction <br />
+					Setting up the vessel <br />
+					Preserved Arrangement <br />
+					Decoration: Rocks & Pebbles <br />
+					Light bulbs Placements<br />
+					FAQ <br />
+				</div>
+			</div>
+
+			<div class="border-y border-gray-300">
+				<button
+					class="w-full flex justify-between items-center py-7 text-left focus:outline-none"
+					onclick="toggleCollapse(2)"
+				>
+					<span class="font-semibold text-gray-800"
+						>Workshop Materials</span
+					>
+					<svg
+						id="icon-2"
+						class="w-6 h-6 text-gray-800 transform transition-transform"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 4v16m8-8H4"
+						/>
+					</svg>
+				</button>
+				<div
+					id="content-2"
+					class="h-0 overflow-hidden transition-[height] duration-300 ease-in-out px-4 text-gray-600"
+				>
+					Stainless Steel Tray <br />
+					Boudlers/Pebbles <br />
+					Preserved Moss <br />
+					Light Bulbs <br />
+				</div>
+			</div>
+
+			<div class="border-y border-gray-300">
+				<button
+					class="w-full flex justify-between items-center py-7 text-left focus:outline-none"
+					onclick="toggleCollapse(3)"
+				>
+					<span class="font-semibold text-gray-800">Dimensions</span>
+					<svg
+						id="icon-3"
+						class="w-6 h-6 text-gray-800 transform transition-transform"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 4v16m8-8H4"
+						/>
+					</svg>
+				</button>
+				<div
+					id="content-3"
+					class="h-0 overflow-hidden transition-[height] duration-300 ease-in-out px-4 text-gray-600"
+				>
+					H: 8-10cm W: 25cm
+				</div>
+			</div>
+		</div>
+
+		<div class="w-full flex px-16 mt-32">
+			<div class="w-1/2">
+				<img
+					src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/f2e5431b-fbca-4b9c-a576-db60436a8fa8/IMG_9315.jpg?format=1500w"
+					alt=""
+				/>
+			</div>
+		</div>
+		<div class="w-full flex flex-row-reverse px-16 mt-32">
+			<div class="w-1/2">
+				<img
+					src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/df4cd193-2669-4c9e-85ce-b546c59c9aac/IMG_9331.jpg?format=1500w"
+					alt=""
+				/>
+			</div>
+		</div>
+		<div class="w-full flex px-16 mt-32 mb-20">
+			<div class="w-1/2">
+				<img
+					src="https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/30e6ddf5-c237-4cb2-ada3-282a759fcdf6/IMG_9348.jpg?format=1500w"
+					alt=""
+				/>
+			</div>
+		</div>
+
+		<footer class="bg-[#262626] text-white py-16 px-8 h-[434px]">
+			<div class="mx-auto gap-8 flex">
+				<div class="ml-5 w-[800px] mr-12">
+					<h3 class="text-3xl mb-4">Stay Updated</h3>
+					<p class="text-sm text-white mb-6">
+						Sign up with your email address to receive news and
+						updates.
+					</p>
+					<div class="flex items-center space-x-4 mt-3">
+						<input
+							type="email"
+							placeholder="Email Address"
+							class="w-full max-w-xs px-7 py-4 border border-gray-600 bg-white text-gray-500 placeholder-gray-500 focus:outline-none font-thin focus:ring-2 focus:ring-white"
+						/>
+						<button
+							class="px-9 py-6 text-sm font-bold border-2 border-white text-white hover:bg-white hover:text-black rounded-full transition"
+						>
+							Sign Up
+						</button>
+					</div>
+					<div class="mt-20 flex space-x-8 text-sm text-white">
+						<a href="#" class="underline">FAQs and Delivery</a>
+						<a href="#" class="underline">Privacy Policy</a>
+					</div>
+				</div>
+
+				<div>
+					<h3 class="text-3xl mb-4 mr-48">Info</h3>
+					<ul class="space-y-1">
+						<li>
+							<a href="#" class="text-sm text-white underline"
+								>About</a
+							>
+						</li>
+						<li>
+							<a href="#" class="text-sm text-white underline"
+								>Plant Care</a
+							>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3 class="text-3xl mb-4 mr-48">Follow</h3>
+					<ul class="space-y-1">
+						<li>
+							<a href="#" class="text-sm text-white underline"
+								>Facebook</a
+							>
+						</li>
+						<li>
+							<a href="#" class="text-sm text-white underline"
+								>Instagram</a
+							>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3 class="text-3xl mb-4">Contact</h3>
+					<address class="not-italic">
+						<p class="text-sm text-white mb-10">
+							46 Kim Yam Road<br />
+							#02-07/8, S239351
+						</p>
+						<a
+							href="mailto:hello@soilboy.sg"
+							class="text-sm text-white underline"
+						>
+							hello@soilboy.sg
+						</a>
+
+						<p class="mt-20">Soilboy © 202</p>
+					</address>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Funkce pro toggling collapsible sekcí
+			function toggleCollapse(index) {
+				const contents = document.querySelectorAll("[id^='content-']");
+				const icons = document.querySelectorAll("[id^='icon-']");
+
+				contents.forEach((content, i) => {
+					const icon = icons[i];
+					const isTarget = i + 1 === index;
+
+					if (isTarget) {
+						// Pokud je aktuální sekce sbalená, rozbal ji
+						if (
+							content.style.height === "0px" ||
+							!content.style.height
+						) {
+							content.style.height = content.scrollHeight + "px";
+							icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />`; // Minus icon
+						} else {
+							// Jinak ji sbal
+							content.style.height = "0px";
+							icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />`; // Plus icon
+						}
+					} else {
+						// Sbal všechny ostatní sekce
+						content.style.height = "0px";
+						icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />`; // Plus icon
+					}
+				});
+			}
+
+			// Funkce Lightbox - Globální definice
+			function openLightbox(imageUrl) {
+				const lightbox = document.createElement("div");
+				lightbox.className =
+					"fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50";
+				lightbox.innerHTML = `
+                    <div class="relative">
+                        <button class="absolute top-2 right-2 text-white text-3xl" onclick="closeLightbox()">&times;</button>
+                        <img src="${imageUrl}" alt="Lightbox Image" class="max-w-full max-h-full">
+                    </div>
+                    `;
+				document.body.appendChild(lightbox);
+			}
+
+			function closeLightbox() {
+				const lightbox = document.querySelector(".fixed.inset-0");
+				if (lightbox) {
+					lightbox.remove();
+				}
+			}
+
+			// Nastavení click listeneru pro img-slide (rodičovský div slideru)
+			const imgSlideParent = document.getElementById("img-slide");
+
+			if (imgSlideParent) {
+				imgSlideParent.addEventListener("click", (event) => {
+					// Kontrola, zda bylo kliknuto na obrázek
+					if (event.target.tagName === "DIV") {
+						if (window.currentSlide == 1) {
+							openLightbox(
+								"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/e2075da4-feed-4b58-a222-ed7b133f97a3/IMG_9309_v2.jpg?format=2500w"
+							); // Předání URL obrázku
+						} else {
+							openLightbox(
+								"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/6e9e6607-006d-4ce7-9aaf-b643ebf430df/IMG_9357_2.jpg?format=2500w"
+							); // Předání URL obrázku
+						}
+					}
+				});
+			} else {
+				console.error("Element #img-slide nebyl nalezen.");
+			}
+
+			// Zavření lightboxu při stisku klávesy Escape
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape") {
+					closeLightbox();
+				}
+			});
+		</script>
+
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="./main.js"></script>
+		<script src="./navbar.js"></script>
+	</body>
+</html>

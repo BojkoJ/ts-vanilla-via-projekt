@@ -241,49 +241,5 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="./main.js"></script>
 		<script src="./navbar.js"></script>
-
-		<script>
-			setTimeout(() => {
-				let wsLink = document.querySelector(".ws-link");
-				wsLink.classList.add("underline");
-			}, 500);
-
-			const secondImages = [
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/6e9e6607-006d-4ce7-9aaf-b643ebf430df/IMG_9357_2.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/a347b202-a1b2-4215-88df-06d9ac3b342c/TTC_6346.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/9bdbfd3b-27ef-451b-85a1-e1a2efed25c5/TTC_6469.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/8eb787c3-121b-4721-ad34-07fece2ec073/TTC_6003.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/329cfb01-1b3e-4da8-b4f8-444dfa688582/Minigarden.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/1669812405732-XKCB78S3RW67GHE12Y47/IMG_2976.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/1718701453553-A2NB59YZ68LJ7P8NHAS0/IMG_7679.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/1690361165410-D3T7W0MERH2E6IKYBMMR/IMG_2449.jpg?format=2500w",
-				"https://images.squarespace-cdn.com/content/v1/5f6effe2de91535318dd74a3/1675504443134-F6XEPC25CGD4940UXYY9/IMG_5299.jpg?format=2500w",
-			];
-
-			const workshops = document.querySelectorAll(".workshops img");
-
-			workshops.forEach((workshop, index) => {
-				workshop.dataset.originalSrc = workshop.src;
-
-				workshop.addEventListener("mouseover", () => {
-					workshop.style.transition = "opacity 0.5s ease-in-out";
-					workshop.style.opacity = "0.5";
-
-					setTimeout(() => {
-						workshop.src = secondImages[index];
-						workshop.style.opacity = "1";
-					}, 300);
-				});
-
-				workshop.addEventListener("mouseout", () => {
-					workshop.style.transition = "opacity 0.5s ease-in-out";
-					workshop.style.opacity = "0.5";
-					setTimeout(() => {
-						workshop.src = workshop.dataset.originalSrc;
-						workshop.style.opacity = "1";
-					}, 300);
-				});
-			});
-		</script>
 	</body>
 </html>
