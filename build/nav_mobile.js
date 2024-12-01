@@ -1,6 +1,6 @@
 const mobilenavbarHTML = `
   <nav
-    id="navbar"
+    id="navbar-mobile"
     class="sm:hidden inline-block fixed top-0 left-0 w-full text-neutral-900 z-50 h-[156px] transition-all transform bg-transparent"
   >
     <div
@@ -75,7 +75,7 @@ const mobilenavbarHTML = `
                 class="h-7 w-7 cursor-pointer"
             />     
             <a
-                href=""
+                href="./contact.html"
                 class="text-center mt-10 border-2 border-gray-950 text-[18.3px] rounded-full py-2.5 px-4 hover:bg-[#19341E] hover:text-gray-50 transition-all"
             >Contact us</a>
         </div>

@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 	setTimeout(() => {
-		const navbar = document.getElementById("navbar");
+		const navbar =
+			window.innerWidth < 750
+				? document.getElementById("navbar-mobile")
+				: document.getElementById("navbar");
 
 		if (navbar) {
 			let lastScrollTop = 0;

@@ -388,34 +388,38 @@
 			</div>
 		</div>
 
-		<footer class="bg-[#262626] text-white py-16 px-8 h-[434px]">
-			<div class="mx-auto gap-8 flex">
+		<footer class="bg-[#262626] text-white py-16 px-8 sm:h-[434px]">
+			<div class="mx-auto gap-8 flex sm:flex-row flex-col">
 				<div class="ml-5 w-[800px] mr-12">
 					<h3 class="text-3xl mb-4">Stay Updated</h3>
 					<p class="text-sm text-white mb-6">
 						Sign up with your email address to receive news and
 						updates.
 					</p>
-					<div class="flex items-center space-x-4 mt-3">
+					<div
+						class="flex sm:flex-row flex-col sm:items-center space-x-4 mt-3"
+					>
 						<input
 							type="email"
 							placeholder="Email Address"
 							class="w-full max-w-xs px-7 py-4 border border-gray-600 bg-white text-gray-500 placeholder-gray-500 focus:outline-none font-thin focus:ring-2 focus:ring-white"
 						/>
 						<button
-							class="px-9 py-6 text-sm font-bold border-2 border-white text-white hover:bg-white hover:text-black rounded-full transition"
+							class="px-9 mt-7 sm:mt-0 max-w-[9rem] py-6 text-sm font-bold border-2 border-white text-white hover:bg-white hover:text-black rounded-full transition"
 						>
 							Sign Up
 						</button>
 					</div>
-					<div class="mt-20 flex space-x-8 text-sm text-white">
+					<div
+						class="hidden sm:flex mt-20 space-x-8 text-sm text-white"
+					>
 						<a href="#" class="underline">FAQs and Delivery</a>
 						<a href="#" class="underline">Privacy Policy</a>
 					</div>
 				</div>
 
-				<div>
-					<h3 class="text-3xl mb-4 mr-48">Info</h3>
+				<div class="mt-14 sm:mt-0">
+					<h3 class="sm:text-3xl text-2xl mb-4 mr-48">Info</h3>
 					<ul class="space-y-1">
 						<li>
 							<a href="#" class="text-sm text-white underline"
@@ -431,7 +435,7 @@
 				</div>
 
 				<div>
-					<h3 class="text-3xl mb-4 mr-48">Follow</h3>
+					<h3 class="sm:text-3xl text-2xl mb-4 mr-48">Follow</h3>
 					<ul class="space-y-1">
 						<li>
 							<a href="#" class="text-sm text-white underline"
@@ -459,8 +463,14 @@
 						>
 							hello@soilboy.sg
 						</a>
+						<div
+							class="smhidden flex space-x-8 mt-10 text-sm text-white"
+						>
+							<a href="#" class="underline">FAQs and Delivery</a>
+							<a href="#" class="underline">Privacy Policy</a>
+						</div>
 
-						<p class="mt-20">Soilboy © 2022</p>
+						<p class="mt-10">Soilboy © 2022</p>
 					</address>
 				</div>
 			</div>
