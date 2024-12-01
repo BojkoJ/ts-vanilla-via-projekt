@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definování prvního custom fontu pro nav */
+@font-face {
+	font-family: "CustomFontNav"; /* Název fontu pro nav */
+	src: url("./font.otf") format("opentype"); /* Cesta k prvnímu fontu */
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Definování druhého custom fontu pro zbytek stránky */
+@font-face {
+	font-family: "CustomFontBody"; /* Název fontu pro tělo stránky */
+	src: url("./font2.otf") format("opentype"); /* Cesta ke druhému fontu */
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Použití custom fontu pro element nav */
+nav {
+	font-family: "CustomFontNav", sans-serif; /* Použití prvního fontu */
+}
+
+/* Použití druhého fontu pro zbytek stránky */
+body,
+footer {
+	font-family: "CustomFontBody", sans-serif; /* Použití druhého fontu */
+}
+
+.hidden {
+	display: none;
+}
