@@ -1,7 +1,7 @@
 const mobilenavbarHTML = `
   <nav
     id="navbar-mobile"
-    class="sm:hidden inline-block fixed top-0 left-0 w-full text-neutral-900 z-50 h-[156px] transition-all transform bg-transparent"
+    class="sm:hidden  inline-block fixed top-0 left-0 w-full text-neutral-900 z-50 h-[156px] transition-all transform bg-transparent"
   >
     <div
       class="h-[36px] w-full bg-[#262626] text-[11px] tracking-wide text-gray-50 flex items-center justify-center"
@@ -44,8 +44,8 @@ const mobilenavbarHTML = `
     </div>
   </nav>
 
-    <div id="mobile-menu" class="relative ml-10 hidden bg-[#FFF9F0] h-screen w-full ">
-        <div class="flex flex-col items-start justify-center h-[90vh]">
+    <div id="mobile-menu" class="fixed pl-10 hidden z-40 bg-[#FFF9F0] h-screen w-full ">
+        <div class="flex flex-col items-start justify-center h-[50vh]">
             <a id="plants-link" href="#" class="text-4xl flex items-center">
                 Plants
                 <svg
@@ -68,7 +68,7 @@ const mobilenavbarHTML = `
             <a href="#" class="text-4xl mt-1">Lifestyle</a>
             <a class="mt-9 cursor-pointer text-4xl" href="login">Login</a>
         </div>
-        <div id="rest-nav" class="flex flex-col h-[10vh] -mt-16 w-1/2">
+        <div id="rest-nav" class="flex flex-col h-[10vh]  w-1/2">
             <img
                 src="./ig.png"
                 alt="Instagram Icon"
