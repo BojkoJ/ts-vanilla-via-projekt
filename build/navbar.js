@@ -14,6 +14,31 @@ document.addEventListener("DOMContentLoaded", () => {
 				"duration-500"
 			);
 
+			// Invert barev navigace pro stránku contact.html na bílou
+			if (window.location.href.includes("contact.html")) {
+				const links = navbar.querySelectorAll("a");
+				links.forEach((link) => {
+					link.style.color = "white";
+				});
+
+				const borders = navbar.querySelectorAll("*");
+				borders.forEach((element) => {
+					element.style.borderColor = "white";
+				});
+
+				const paragraphs = navbar.querySelectorAll("p");
+				paragraphs.forEach((p) => {
+					p.style.color = "white";
+				});
+
+				const images = document.querySelectorAll("img");
+				images.forEach((img) => {
+					if (!img.classList.contains("hero-img")) {
+						img.style.filter = "invert(1)";
+					}
+				});
+			}
+
 			window.addEventListener("scroll", () => {
 				const scrollTop =
 					window.pageYOffset || document.documentElement.scrollTop;
@@ -25,7 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
 						navbar.classList.add("translate-y-0");
 						navbar.classList.remove("-translate-y-full");
 						navbar.classList.add("bg-transparent"); // Změníme pozadí na transparentní
-						navbar.classList.remove("bg-[#FFF9F0]"); // Odstraníme případnou bílou barvu pozadí
+
+						if (window.location.href.includes("contact.html")) {
+							navbar.classList.remove("bg-[#19341E]");
+						} else {
+							navbar.classList.remove("bg-[#FFF9F0]"); // Změníme pozadí zpět na bílou
+						}
 					}, 430);
 					scrollUpThreshold = 0; // Resetujeme scrollUpThreshold
 				} else if (scrollTop > lastScrollTop) {
@@ -34,7 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
 						navbar.classList.add("-translate-y-full");
 						navbar.classList.remove("translate-y-0");
 						navbar.classList.remove("bg-transparent");
-						navbar.classList.add("bg-[#FFF9F0]"); // Změníme pozadí zpět na bílou
+
+						if (window.location.href.includes("contact.html")) {
+							navbar.classList.add("bg-[#19341E]");
+						} else {
+							navbar.classList.add("bg-[#FFF9F0]"); // Změníme pozadí zpět na bílou
+						}
 					}, 250);
 					scrollUpThreshold = 0; // Resetuje se, když uživatel scrolluje dolů
 				} else {

@@ -72,7 +72,7 @@ const navbarHTML = `
           <p>0</p>
         </div>
         <a
-          href=""
+          href="./contact.html"
           class="border-2 border-gray-950 rounded-full p text-[14px] py-1 px-3 hover:bg-[#19341E] hover:text-gray-50 transition-all"
           >Contact us</a
         >
