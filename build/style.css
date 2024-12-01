@@ -32,3 +32,48 @@ footer {
 .hidden {
 	display: none;
 }
+
+#hamburger-icon.open div:nth-child(1) {
+	transform: rotate(50deg) translateY(0.32rem);
+}
+
+#hamburger-icon.open div:nth-child(2) {
+	transform: rotate(-50deg) translateY(-0.32rem);
+}
+
+/* Add smooth transition */
+#hamburger-icon div {
+	transition: transform 0.3s ease;
+}
+
+/* CSS Animations */
+@keyframes slideOutLeft {
+	from {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+/* Classes for Animations */
+.slide-out-left {
+	animation: slideOutLeft 0.5s ease forwards;
+}
+
+.slide-in-right {
+	animation: slideInRight 0.5s ease forwards;
+}
