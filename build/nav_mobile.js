@@ -44,8 +44,8 @@ const mobilenavbarHTML = `
     </div>
   </nav>
 
-    <div id="mobile-menu" class="fixed pl-10 hidden z-40 bg-[#FFF9F0] h-screen w-full ">
-        <div class="flex flex-col items-start justify-center h-[50vh]">
+    <div id="mobile-menu" class="fixed pl-10 hidden z-40 bg-[#FFF9F0] h-screen w-full flex flex-col">
+        <div class="flex flex-col items-start justify-center h-1/2">
             <a id="plants-link" href="#" class="text-4xl flex items-center">
                 Plants
                 <svg
@@ -68,7 +68,7 @@ const mobilenavbarHTML = `
             <a href="#" class="text-4xl mt-1">Lifestyle</a>
             <a class="mt-9 cursor-pointer text-4xl" href="login">Login</a>
         </div>
-        <div id="rest-nav" class="flex flex-col h-[10vh]  w-1/2">
+        <div id="rest-nav" class="flex flex-col h-1/6 w-1/2">
             <img
                 src="./ig.png"
                 alt="Instagram Icon"
@@ -123,6 +123,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 		// Toggle mobile menu
 		let hamburger = document.getElementById("hamburger-icon");
 		let mobileMenu = document.getElementById("mobile-menu");
+
+		if (window.location.href.includes("index.html")) {
+			console.log("contains");
+			mobileMenu.firstElementChild.classList.add("mt-48");
+		}
 
 		hamburger.addEventListener("click", () => {
 			hamburger.classList.toggle("open");
